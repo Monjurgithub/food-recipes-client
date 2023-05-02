@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { HiEye, HiEyeSlash } from "react-icons/hi2";
-import { Link } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
+import SocialIcon from '../sheared/SocialIcon';
 
 
 const Login = () =>{
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const {login}= useContext(AuthContext)
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -22,12 +25,19 @@ const Login = () =>{
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
+    login(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+    });
   };
 
   return (
-    <div className='flex justify-center items-center h-screen'>
-        <form onSubmit={handleSubmit} className=" w-2/4 mx-auto p-4 bg-white shadow-md rounded-md lg:w-1/4">
+    <div className='flex flex-col justify-center items-center h-screen'>
+        <Form onSubmit={handleSubmit} className=" w-2/4 mx-auto p-4 bg-white shadow-md rounded-md lg:w-1/4">
       <h2 className="text-lg font-medium mb-4">Login</h2>
       <div className="mb-4">
         <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
@@ -62,7 +72,8 @@ const Login = () =>{
       <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
         Login
       </button>
-    </form>
+    </Form>
+    <SocialIcon></SocialIcon>
     </div>
   );
 }
