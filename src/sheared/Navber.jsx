@@ -1,7 +1,20 @@
-import React from 'react';
-import { FaHamburger } from 'react-icons/fa';
+import React, { useContext } from 'react';
+import { FaHamburger, FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 const Navber = () => {
+  const {user, logOut} = useContext(AuthContext);
+  // const {photoURL} = user;
+  // const {displayName} = user;
+  // console.log(displayName);
+  const handleLogout =() =>{
+    logOut()
+    .then(() => {
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
+}
     return (
         <div>
             <header className="text-gray-600 body-font">
@@ -13,7 +26,11 @@ const Navber = () => {
     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
       <Link to="/" className="mr-5 hover:text-gray-900">Home</Link>
       <Link to="/blog" className="mr-5 hover:text-gray-900">Blog</Link>
-      <Link to="/login" className="mr-5 hover:text-gray-900">LogIn</Link>
+
+      {
+        user ? <span className='flex inline-flex'><img src="" alt="" /> <Link onClick={handleLogout} className="mr-5 hover:text-gray-900">LogOut</Link></span>
+        : <Link to="/login" className="mr-5 hover:text-gray-900">LogIn</Link>
+      }
       <Link to="/register" className="mr-5 hover:text-gray-900">Register</Link>
     </nav>
     

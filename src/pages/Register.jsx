@@ -49,7 +49,7 @@ const Register =() => {
       console.log(user);
       updateProfile(user, {displayName: name})
       updateProfile(user, {photoURL: photoUrl})
-      // Form.reset;
+      from.reset()
   })
   .catch((error) => {
       const errorMessage = error.message;
