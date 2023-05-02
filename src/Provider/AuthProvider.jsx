@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,GoogleAuthProvider , signOut, GithubAuthProvider   } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,GoogleAuthProvider , signOut, GithubAuthProvider, signInWithPopup   } from "firebase/auth";
 import app from '../Firebase/Firebase.config';
 
 

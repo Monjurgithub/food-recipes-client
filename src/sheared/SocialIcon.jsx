@@ -6,11 +6,28 @@ const SocialIcon = () => {
 
     const handleGoogle =() =>
     {
+        google()
+        .then((result) => {
+            const user = result.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorMessage = error.message;
+          });
 
 
     }
 
     const handleGithub=()=>{
+        github()
+        .then((result) => {
+            const user = result.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorMessage = error.message;
+          });
+        
 
     }
     return (
