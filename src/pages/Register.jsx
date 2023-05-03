@@ -49,6 +49,7 @@ const Register =() => {
       const user = userCredential.user;
       updateProfile(user, {displayName: name})
       updateProfile(user, {photoURL: photoUrl})
+      console.log(user);
       navigate("/")
       form.reset();
   })

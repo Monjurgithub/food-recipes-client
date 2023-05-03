@@ -6,12 +6,14 @@ import Register from "../pages/Register";
 import ChefDetails from "../pages/ChefDetails";
 import AllLayout from "../layout/AllLayout";
 import PrivateRoute from "../Provider/PrivateRoute";
+import ErrorPage from "../sheared/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <HomeLayout></HomeLayout>,
+      errorElement: <ErrorPage></ErrorPage>,
       children:[
         {
             path:"/",
@@ -31,6 +33,7 @@ export const router = createBrowserRouter([
     {
       path:"chefs",
       element:<AllLayout></AllLayout>,
+      errorElement: <ErrorPage></ErrorPage>,
       children:[
         {
     
