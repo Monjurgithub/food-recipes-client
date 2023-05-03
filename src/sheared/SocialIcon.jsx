@@ -31,7 +31,7 @@ const SocialIcon = () => {
 
     }
     return (
-        <div className='flex justify-center items-center h-screen'>
+        <div className='flex justify-center items-center h-screen mt-4'>
             <div className=' w-2/4 p-4 bg-white shadow-md rounded-md lg:w-1/4'>
       <img onClick={handleGoogle} className='mb-3' src="https://i.ibb.co/k87jp0T/google-btn.png" alt="" />
       <img onClick={handleGithub} src="https://i.ibb.co/WvnKFcF/github-btn.png" alt="" />

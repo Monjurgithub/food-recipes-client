@@ -5,6 +5,7 @@ import Login from "../pages/Login"
 import Register from "../pages/Register";
 import ChefDetails from "../pages/ChefDetails";
 import AllLayout from "../layout/AllLayout";
+import PrivateRoute from "../Provider/PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -34,7 +35,7 @@ export const router = createBrowserRouter([
         {
     
           path: ":id",
-          element:<ChefDetails></ChefDetails>,
+          element:<PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
           loader: ({params})=> fetch(`http://localhost:5000/chefs/${params.id}`)
         
       }

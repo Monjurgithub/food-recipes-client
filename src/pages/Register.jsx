@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { updateProfile } from 'firebase/auth';
-import { Form } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import SocialIcon from '../sheared/SocialIcon';
 
 const Register =() => {
@@ -12,6 +12,7 @@ const Register =() => {
   const [password, setPassword] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
   const [error, setError] = useState('')
+  const navigate = useNavigate();
 
 
   const {createUser} = useContext(AuthContext)
@@ -35,19 +36,20 @@ const Register =() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const form = e.target;
-    // const email = form.email.value;
-    // const password = form.password.value;
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
     setError("")
     if (password.length <= 7) {
       setError(toast("Your password must be 8 character or longer"));
       return;
     }
-    createUser(email, password, name, photoUrl)
+    createUser(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       updateProfile(user, {displayName: name})
       updateProfile(user, {photoURL: photoUrl})
+      navigate("/")
       form.reset();
   })
   .catch((error) => {

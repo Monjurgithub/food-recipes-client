@@ -3,8 +3,8 @@ import Rating from 'react-rating';
 import { FaRegStar, FaStar } from "react-icons/fa";
 
 const RecipesCard = ({ m }) => {
-    console.log(m);
     const { name, ingredients, cooking_method, rating } = m;
+    
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -18,16 +18,15 @@ const RecipesCard = ({ m }) => {
 
                     </div>
                     <p>{cooking_method}</p>
-                    <Rating>
+                    
 
                         <Rating
-                            placeholderRating={rating}
-                            emptySymbol={<FaRegStar></FaRegStar>}
-                            placeholderSymbol={<FaStar className='text-warning'></FaStar>}
-                            fullSymbol={<FaStar></FaStar>}
-                            readonly
-                        />
-                    </Rating>
+                        placeholderRating={rating}
+                        emptySymbol={<FaRegStar></FaRegStar>}
+                        placeholderSymbol={<FaStar className='text-warning'></FaStar>}
+                        fullSymbol={<FaStar></FaStar>}
+                        readonly/>
+                    
                     <div className="card-actions justify-end">
                         <button className="btn btn-primary">Buy Now</button>
                     </div>

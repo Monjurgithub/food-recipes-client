@@ -5,22 +5,21 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 
 const Navber = () => {
-  const { user, logOut, loading } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   // const {photoURL} = user;
-  if (loading) {
-    return <span>Loading...</span>
-  }
-    const handleLogout = () => {
-      logOut()
-        .then(() => {
-          // Sign-out successful.
-        }).catch((error) => {
-          // An error happened.
-        });
-    }
+  console.log(user);
 
-  
-  
+  const handleLogout = () => {
+    logOut()
+    .then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    })
+  }
+
+
+
   return (
     <div>
       <navbar className="text-gray-600 body-font">
@@ -34,8 +33,8 @@ const Navber = () => {
             <Link to="/blog" className="mr-5 hover:text-gray-900">Blog</Link>
 
             {
-              user ? <span className='flex inline-flex'><img className="w-10 rounded-full" src={user?.photoURL} alt="" /> <Link onClick={handleLogout} className="mr-5 hover:text-gray-900">LogOut</Link></span>
-                : <Link to="/login" className="mr-5 hover:text-gray-900">LogIn</Link>
+              user ? <span className='m-2'>{user.email}<Link to = "/login"><button  className='m-2' onClick={handleLogout} variant="dark">LogOut</button></Link></span>
+                : <Link to="/login" className="mr-5 hover:text-gray-900"><button  variant="dark">LogIn</button></Link>
             }
             <Link to="/register" className="mr-5 hover:text-gray-900">Register</Link>
           </nav>

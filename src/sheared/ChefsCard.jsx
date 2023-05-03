@@ -9,8 +9,7 @@ const ChefsCard = () => {
             .then(res => res.json())
             .then(data => setchefs(data))
             .catch(error => console.log(error))
-    }, [])
-    console.log(chefs);
+    }, []);
     return (
         <div className='my-container'>
             <div className='grid gap-4 mb-4 md:grid-cols-3 lg:grid-cols-3'>
