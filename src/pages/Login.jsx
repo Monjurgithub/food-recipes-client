@@ -29,6 +29,7 @@ const Login = () =>{
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user);
+      form.reset();
     })
     .catch((error) => {
       const errorMessage = error.message;

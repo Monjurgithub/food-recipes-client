@@ -46,10 +46,9 @@ const Register =() => {
     createUser(email, password, name, photoUrl)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
       updateProfile(user, {displayName: name})
       updateProfile(user, {photoURL: photoUrl})
-      from.reset()
+      form.reset();
   })
   .catch((error) => {
       const errorMessage = error.message;
