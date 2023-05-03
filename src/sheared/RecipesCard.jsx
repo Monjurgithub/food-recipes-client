@@ -1,10 +1,23 @@
 import React from 'react';
 import Rating from 'react-rating';
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi2';
 
 const RecipesCard = ({ m }) => {
     const { name, ingredients, cooking_method, rating } = m;
+    const [isclicked, setIsclicked] = useState(false)
+    const handleClick=()=>
+    {
+        setIsclicked(true)
+        if(true)
+        {
+            toast.success("You clicked on the recipe")
+        }
+    }
     
+console.log(isclicked);
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -18,17 +31,19 @@ const RecipesCard = ({ m }) => {
 
                     </div>
                     <p>{cooking_method}</p>
-                    
 
-                        <Rating
+
+                    <Rating
                         placeholderRating={rating}
                         emptySymbol={<FaRegStar></FaRegStar>}
                         placeholderSymbol={<FaStar className='text-warning'></FaStar>}
                         fullSymbol={<FaStar></FaStar>}
-                        readonly/>
-                    
+                        readonly />
+
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
+                        <button onClick={handleClick} disabled={isclicked}>
+                        {isclicked ? <HiHeart></HiHeart> : <HiOutlineHeart></HiOutlineHeart>}
+                        </button>
                     </div>
                 </div>
             </div>

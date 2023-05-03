@@ -39,9 +39,10 @@ const Register =() => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    
     setError("")
-    if (password.length <= 7) {
-      setError(toast("Your password must be 8 character or longer"));
+    if (password.length <6) {
+      setError(toast("Your password must be 6 character or longer"));
       return;
     }
     createUser(email, password)

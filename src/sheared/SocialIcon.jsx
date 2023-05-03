@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const SocialIcon = () => {
    const {github, google} = useContext(AuthContext)
-
+   const navigate = useNavigate();
     const handleGoogle =() =>
     {
         google()
         .then((result) => {
             const user = result.user;
-            console.log(user);
+            navigate("/")
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -22,7 +23,7 @@ const SocialIcon = () => {
         github()
         .then((result) => {
             const user = result.user;
-            console.log(user);
+            navigate("/")
           })
           .catch((error) => {
             const errorMessage = error.message;

@@ -3,6 +3,7 @@ import { HiEye, HiEyeSlash } from "react-icons/hi2";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import SocialIcon from '../sheared/SocialIcon';
+import { toast } from 'react-toastify';
 
 
 
@@ -36,11 +37,11 @@ const Login = () => {
     login(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
+        toast(errorMessage)
       });
   };
 
