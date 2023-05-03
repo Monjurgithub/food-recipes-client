@@ -1,8 +1,9 @@
 import React from 'react';
 import { HiHandThumbUp } from "react-icons/hi2";
+import { Link } from 'react-router-dom';
 
 const SingleChefCard = (props) => {
-    const {picture, name, years_of_experience, num_recipes, likes} =   props.c;
+    const {id, picture, name, years_of_experience, num_recipes, likes} =   props.c;
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -15,7 +16,7 @@ const SingleChefCard = (props) => {
                     </div>
                     <div className=" flex inline-flex card-actions justify-end">
                         <p className='flex'><HiHandThumbUp className='me-2'></HiHandThumbUp> {likes}</p>
-                        <button className="btn btn-primary">Buy Now</button>
+                        <Link to={`/chefs/${id}`}><button className="btn btn-primary">View Recipes Button</button></Link>
                     </div>
                 </div>
             </div>

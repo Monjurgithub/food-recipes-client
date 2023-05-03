@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 
 const HomeLayout = () => {
     return (
-        <div>
+        <div className='my-container'>
             <Navber></Navber>
             <Outlet></Outlet>
             <Footer></Footer>

@@ -5,7 +5,7 @@ import Footer from '../sheared/Footer';
 
 const AllLayout = () => {
     return (
-        <div>
+        <div className='my-container'>
             <Navber></Navber>
             <Outlet></Outlet>
             <Footer></Footer>
