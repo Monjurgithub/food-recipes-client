@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { updateProfile } from 'firebase/auth';
 import { Form, useNavigate } from 'react-router-dom';
 import SocialIcon from '../sheared/SocialIcon';
+import Swal from 'sweetalert2';
 
 const Register =() => {
   const [name, setName] = useState('');
@@ -48,9 +49,17 @@ const Register =() => {
     createUser(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
+      if(user)
+        {
+          Swal.fire({
+            title: 'Success',
+            text: 'successfully Register',
+            icon: 'success',
+            confirmButtonText: 'Continue'
+          })
+        }
       updateProfile(user, {displayName: name})
       updateProfile(user, {photoURL: photoUrl})
-      console.log(user);
       navigate("/")
       form.reset();
   })

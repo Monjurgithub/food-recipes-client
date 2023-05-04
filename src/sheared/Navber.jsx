@@ -2,15 +2,15 @@ import React, { useContext, useState } from 'react';
 import { FaHamburger, FaUserCircle } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
+import { Tooltip } from 'react-tooltip'
+import 'react-tooltip/dist/react-tooltip.css'
 
 
 const Navber = () => {
   const { user, logOut } = useContext(AuthContext);
-  const location = useLocation();
+  const [activeRoute, setActiveRoute] = useState('/');
 
-  const isActiveRoute = (routeName) => {
-    return location.pathname === routeName ? 'active' : '';
-  };
+   console.log(user);
 
 
   const handleLogout = () => {
@@ -26,45 +26,48 @@ const Navber = () => {
 
   return (
     <div>
-      <navbar className="text-gray-600 body-font">
-        <div className=" mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <div className='inline-flex'>
-              <Link to="/"><FaHamburger className='text-orange-500	'></FaHamburger></Link>
-              <Link to="/"><span className="ml-3 text-xl">FoodFun</span></Link>
-            </div>
-          </a>
-          <ul className=" items-center space-x-8 lg:flex md:ml-auto flex flex-wrap  text-base justify-center">
-            <li className={isActiveRoute('/')}> 
-            <Link to="/">Home</Link>
-            </li>
-            <li className={isActiveRoute('/blog')}>
-            <Link  to="/blog">Blog</Link>
-            </li>
-
-            <li>
-            {
-              user ? <span className='m-2 flex'><img className="w-10 rounded-full "
-                src={user?.photoURL} alt="" /><Link to="/"><button className={isActiveRoute('/')} onClick={handleLogout} variant="dark">LogOut</button></Link></span>
-                : <Link to="/login"><button className={isActiveRoute('/login')} variant="dark">LogIn</button></Link>
-            }
-            </li>
-
-
-
-
-
-
-            
-
-
-            <li className={isActiveRoute('/register')}>
-            <Link to="/register">Register</Link>
-            </li>
-          </ul>
-
+      <div className="navbar bg-base-100">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+          </div>
+          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
         </div>
-      </navbar >
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <li>
+                <Link to="/" onClick={() => setActiveRoute('/')}
+                  className={`${activeRoute === '/' ? 'text-blue-500' : 'text-gray-500'
+                    } hover:text-blue-500`}>Home</Link>
+              </li>
+            </li>
+            <li>
+              <Link to="/blog" onClick={() => setActiveRoute('/blog')}
+                className={`${activeRoute === '/blog' ? 'text-blue-500' : 'text-gray-500'
+                  } hover:text-blue-500`}>Blog</Link>
+            </li>
+            <li>{
+              user ? <div className='flex-none gap-2' data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName}><img className="w-10 rounded-full "
+                src={user?.photoURL} alt="" /><Link to="/" ><button onClick={handleLogout} variant="dark">LogOut</button></Link></div>
+                : <Link to="/login" onClick={() => setActiveRoute('/login')}
+                  className={`${activeRoute === '/login' ? 'text-blue-500' : 'text-gray-500'
+                    } hover:text-blue-500`}><button variant="dark">LogIn</button></Link>
+            }</li>
+          </ul>
+        </div>
+        <div className="navbar-end">
+          <li >
+            <Link to="/register" onClick={() => setActiveRoute('/register')}
+                className={`${activeRoute === '/register' ? 'text-blue-500' : 'text-gray-500'
+                  } hover:text-blue-500`}><button className='btn'>Register</button></Link>
+          </li>
+        </div>
+      </div>
+      
+      <Tooltip id="my-tooltip" />
     </div>
   );
 };

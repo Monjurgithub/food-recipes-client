@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import SocialIcon from '../sheared/SocialIcon';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'
 
 
 
@@ -34,15 +35,38 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    login(email, password)
+    
+      
+      login(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        if(user)
+        {
+          Swal.fire({
+            title: 'Success',
+            text: 'login successfully',
+            icon: 'success',
+            confirmButtonText: 'Continue'
+          })
+        }
+
+        
         navigate(from, { replace: true });
       })
       .catch((error) => {
+        if(error)
+        {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Invalied Email and password',
+            icon: 'error',
+            confirmButtonText: 'ok'
+          })
+        }
         const errorMessage = error.message;
-        toast(errorMessage)
+      
       });
+    
   };
 
   return (

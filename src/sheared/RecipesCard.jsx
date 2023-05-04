@@ -8,16 +8,14 @@ import { HiHeart, HiOutlineHeart } from 'react-icons/hi2';
 const RecipesCard = ({ m }) => {
     const { name, ingredients, cooking_method, rating } = m;
     const [isclicked, setIsclicked] = useState(false)
-    const handleClick=()=>
-    {
+
+    const handleClick = () => {
         setIsclicked(true)
-        if(true)
-        {
+        if (true) {
             toast.success("You clicked on the recipe")
         }
     }
-    
-console.log(isclicked);
+
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -40,13 +38,15 @@ console.log(isclicked);
                         fullSymbol={<FaStar></FaStar>}
                         readonly />
 
+
                     <div className="card-actions justify-end">
                         <button onClick={handleClick} disabled={isclicked}>
-                        {isclicked ? <HiHeart></HiHeart> : <HiOutlineHeart></HiOutlineHeart>}
+                            {isclicked ? <HiHeart></HiHeart> : <HiOutlineHeart></HiOutlineHeart>}
                         </button>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

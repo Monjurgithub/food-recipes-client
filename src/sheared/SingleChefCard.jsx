@@ -1,13 +1,14 @@
 import React from 'react';
 import { HiHandThumbUp } from "react-icons/hi2";
 import { Link } from 'react-router-dom';
+import LazyLoad from 'react-lazy-load';
 
 const SingleChefCard = (props) => {
     const {id, picture, name, years_of_experience, num_recipes, likes} =   props.c;
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
-                <figure><img className='w-full h-56 md:h-64 xl:h-80' src={picture} alt="" /></figure>
+                <LazyLoad><img className='w-full h-56 md:h-64 xl:h-80' src={picture} alt="" /></LazyLoad>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <div className='flex'>

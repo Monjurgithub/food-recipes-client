@@ -7,6 +7,7 @@ import ChefDetails from "../pages/ChefDetails";
 import AllLayout from "../layout/AllLayout";
 import PrivateRoute from "../Provider/PrivateRoute";
 import ErrorPage from "../sheared/ErrorPage";
+import Blog from "../pages/Blog";
 
 
 export const router = createBrowserRouter([
@@ -23,6 +24,11 @@ export const router = createBrowserRouter([
           path: "/login",
           element: <Login></Login>
         },
+        {
+          path: "/blog",
+          element: <Blog></Blog>
+        },
+
         {
           path: "/register",
           element: <Register></Register>
