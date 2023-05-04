@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
     
           path: ":id",
           element:<PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/chefs/${params.id}`)
+          loader: ({params})=> fetch(`https://food-fun-server-monjurgithub.vercel.app/chefs/${params.id}`)
         
       }
       ]

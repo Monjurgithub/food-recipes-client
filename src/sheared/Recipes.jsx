@@ -30,6 +30,9 @@ const Recipes = ({ m }) => {
                     </div>
                 </div>
             </div>
+            <div class="flex items-center justify-center mb-8 mt-6">
+                <h4 className='animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-5xl font-black'>Chefs Recipes</h4>
+            </div>
             <div className='grid gap-4 mt-8 mb-4 md:grid-cols-3 lg:grid-cols-3'>
                 {
                   recipes.map(m=><RecipesCard m={m}></RecipesCard>)  

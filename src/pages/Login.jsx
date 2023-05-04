@@ -40,6 +40,7 @@ const Login = () => {
       login(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        navigate(from, { replace: true });
         if(user)
         {
           Swal.fire({
@@ -49,9 +50,6 @@ const Login = () => {
             confirmButtonText: 'Continue'
           })
         }
-
-        
-        navigate(from, { replace: true });
       })
       .catch((error) => {
         if(error)
