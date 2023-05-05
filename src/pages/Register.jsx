@@ -64,7 +64,7 @@ const Register = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setError(errorMessage);
+        toast(errorMessage);
       }
       )
   };
